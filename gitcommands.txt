@@ -1,9 +1,0 @@
-git init
-git add .gitignore
-git commit -m "Updated gitignore to ignore n... 
-git add .
-git commit -m "Added User and Worker Dashboard" 
-git branch -M main
-git remote add origin https://github.com/SharadJ19/HomeEase/tree/main
-git branch -M main
-git push -u origin main
