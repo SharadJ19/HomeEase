@@ -9,54 +9,51 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, password, city, role, services, cities, experience } = req.body;
 
-    console.log("Received Registration Data:", req.body); // ✅ Debugging
+    // console.log("Received Registration Data:", req.body);
 
     // Check if email exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      console.log("Email already in use"); // ✅ Debugging
+      
       return res.status(400).json({ message: "Email already in use" });
     }
 
     // Create new user
     const newUser = new User({ name, email, password, city, role });
     await newUser.save();
-    console.log("User created successfully:", newUser); // ✅ Debugging
+    // console.log("User created successfully:", newUser); 
 
     if (role === "worker") {
-      console.log("Creating worker profile..."); // ✅ Debugging
+      // console.log("Creating worker profile...");
 
       if (!services || !cities || experience === undefined) {
-        console.log("Missing worker details"); // ✅ Debugging
+        // console.log("Missing worker details"); // ✅ Debugging
         return res.status(400).json({ message: "Missing worker details" });
       }
 
       const workerData = {
-        userId: newUser._id, // ✅ Correct: Use userId, NOT email
+        userId: newUser._id,
         services: services.split(",").map((s) => s.trim()),
         cities: cities.split(",").map((c) => c.trim()),
         experience: Number(experience),
       };
 
-      console.log("Worker Data before saving:", workerData); // ✅ Debugging
+     //  console.log("Worker Data before saving:", workerData); 
 
       const newWorker = new Worker(workerData);
       await newWorker.save();
 
-      console.log("Worker saved successfully:", newWorker); // ✅ Debugging
+      // console.log("Worker saved successfully:", newWorker);
     }
 
     res.status(201).json({ message: "Registration successful" });
   } catch (error) {
-    console.error("Registration error:", error); // ✅ Debugging
+    // console.error("Registration error:", error); 
     res.status(500).json({ message: "Server error", error: error.message });
   }
 });
 
 
-
-
-// ✅ Login API
 router.post("/login", async (req, res) => {
   try {
     const { email, password, role } = req.body;

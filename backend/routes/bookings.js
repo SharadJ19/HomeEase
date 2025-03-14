@@ -32,7 +32,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 
-// 📌 Get Bookings (For Users & Workers)
+// Get Bookings (For Users & Workers)
 router.get("/", verifyToken, async (req, res) => {
     try {
         const { userId, workerId } = req.query;
@@ -49,7 +49,7 @@ router.get("/", verifyToken, async (req, res) => {
     }
 });
 
-// 📌 Update Booking Status (Worker Only)
+// Update Booking Status (Worker Only)
 router.put("/:id", verifyToken, async (req, res) => {
     try {
         const { status } = req.body;

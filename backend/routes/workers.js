@@ -1,10 +1,11 @@
 import express from "express";
 import Worker from "../models/Worker.js";
 import User from "../models/User.js";
-import { verifyToken } from "../middleware/authMiddleware.js"; // ✅ Import middleware
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
+// Get Workers based on service and city
 router.get("/", async (req, res) => {
     try {
         const { service, city } = req.query;
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
         const workers = await Worker.find({
             services: service,
             cities: city,
-        }).populate("userId", "name"); // Populate 'name' from User model
+        }).populate("userId", "name"); 
 
         res.json(workers);
     } catch (err) {
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
 });
 
 
-// 📌 Get Worker Data by User ID
+// Get Worker Data by User ID
 router.get("/user/:userId", verifyToken, async (req, res) => {
     try {
         const worker = await Worker.findOne({ userId: req.params.userId });
