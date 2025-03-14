@@ -7,10 +7,7 @@ export default defineConfig({
   plugins: [react(),tailwindcss(),],
   server: {
     host: true,
-    allowedHosts: true,
-    proxy: {
-      "/api": "https://homeease-backend.onrender.com",
-    },
+    allowedHosts: true
   }
   
 })
