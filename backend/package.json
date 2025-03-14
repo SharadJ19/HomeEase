@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,8 +11,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
